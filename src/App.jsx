@@ -15,9 +15,14 @@ function App() {
     });
   }
 
+  function rollDice() {
+    setDice(allNewDice());
+  }
+
   return (
     <main>
       <div className="die-container">{diceElements}</div>
+      <button onClick={rollDice}>Roll</button>
     </main>
   );
 }
