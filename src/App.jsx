@@ -15,6 +15,15 @@ function App() {
   });
 
   const dice = values.map((die) => <Die value={die} />);
+
+  const allNewDice = () => {
+    return [...Array(10).keys()].map((die) => {
+      return Math.ceil(Math.random() * 6);
+    });
+  };
+
+  console.log(allNewDice());
+
   return (
     <main>
       <div className="die-container">{dice}</div>
