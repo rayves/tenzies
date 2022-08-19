@@ -17,17 +17,25 @@ function App() {
 
   function allNewDice() {
     return [...Array(10).keys()].map((die) => {
-      const randomNum = Math.ceil(Math.random() * 6);
-      return {
-        id: nanoid(),
-        value: randomNum,
-        isHeld: false,
-      };
+      return newDie();
     });
   }
 
+  function newDie() {
+    const randomNum = Math.ceil(Math.random() * 6);
+    return {
+      id: nanoid(),
+      value: randomNum,
+      isHeld: false,
+    };
+  }
+
   function rollDice() {
-    setDice(allNewDice());
+    setDice((prevDice) =>
+      prevDice.map((die) => {
+        return die.isHeld ? die : newDie();
+      }),
+    );
   }
 
   function holdDie(id) {
@@ -44,6 +52,11 @@ function App() {
 
   return (
     <main>
+      <h1 className="title">Tenzies</h1>
+      <p className="instructions">
+        Roll until all dice are the same. Click each die to freeze it at its
+        current value between rolls.
+      </p>
       <div className="die-container">{diceElements}</div>
       <button className="roll-dice" onClick={rollDice}>
         Roll
