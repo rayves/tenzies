@@ -66,6 +66,12 @@ function App() {
     setCount((prevCount) => prevCount + 1);
   }
 
+  function resetGame() {
+    setDice(allNewDice());
+    setTenzies(false);
+    setCount(0);
+  }
+
   return (
     <main>
       {tenzies && <Confetti />}
@@ -81,6 +87,7 @@ function App() {
         onClick={() => {
           rollDice();
           counter();
+          tenzies && resetGame();
         }}
       >
         {tenzies ? 'New Game' : 'Roll'}
