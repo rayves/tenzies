@@ -1,11 +1,16 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './App.css';
 import Die from './assets/components/Die';
 import { nanoid } from 'nanoid';
 
 function App() {
   const [dice, setDice] = useState(allNewDice());
+  const [tenzies, setTenzies] = useState(false);
   const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    console.log('Dice state changed');
+  }, [dice]);
 
   const diceElements = dice.map((die) => (
     <Die
@@ -52,8 +57,6 @@ function App() {
   function counter() {
     setCount((prevCount) => prevCount + 1);
   }
-
-  console.table(dice);
 
   return (
     <main>
