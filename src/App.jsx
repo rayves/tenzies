@@ -33,10 +33,9 @@ function App() {
   function holdDie(id) {
     setDice((prevDice) => {
       return prevDice.map((prevDie) => {
-        return {
-          ...prevDie,
-          isHeld: prevDie.id === id ? !prevDie.isHeld : prevDie.isHeld,
-        };
+        return prevDie.id === id
+          ? { ...prevDie, isHeld: !prevDie.isHeld }
+          : prevDie;
       });
     });
   }
