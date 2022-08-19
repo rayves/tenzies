@@ -7,7 +7,13 @@ function App() {
   const [dice, setDice] = useState(allNewDice());
 
   const diceElements = dice.map((die) => (
-    <Die key={die.id} value={die.value} isHeld={die.isHeld} />
+    <Die
+      key={die.id}
+      value={die.value}
+      isHeld={die.isHeld}
+      id={die.id}
+      holdDie={holdDie}
+    />
   ));
 
   function allNewDice() {
@@ -25,10 +31,23 @@ function App() {
     setDice(allNewDice());
   }
 
+  function holdDie(id) {
+    setDice((prevDice) => {
+      return prevDice.map((prevDie) => {
+        return {
+          ...prevDie,
+          isHeld: prevDie.id === id ? !prevDie.isHeld : prevDie.isHeld,
+        };
+      });
+    });
+  }
+
+  console.table(dice);
+
   return (
     <main>
       <div className="die-container">{diceElements}</div>
-      <button className="roll-dice" onClick={rollDice} isHeld={dice.isHeld}>
+      <button className="roll-dice" onClick={rollDice}>
         Roll
       </button>
     </main>
