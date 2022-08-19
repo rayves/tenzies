@@ -11,8 +11,7 @@ function App() {
       key={die.id}
       value={die.value}
       isHeld={die.isHeld}
-      id={die.id}
-      holdDie={holdDie}
+      holdDie={() => holdDie(die.id)}
     />
   ));
 
