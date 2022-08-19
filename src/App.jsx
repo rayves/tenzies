@@ -28,7 +28,7 @@ function App() {
   return (
     <main>
       <div className="die-container">{diceElements}</div>
-      <button className="roll-dice" onClick={rollDice}>
+      <button className="roll-dice" onClick={rollDice} isHeld={dice.isHeld}>
         Roll
       </button>
     </main>
