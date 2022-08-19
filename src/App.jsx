@@ -9,7 +9,14 @@ function App() {
   const [count, setCount] = useState(0);
 
   useEffect(() => {
-    console.log('Dice state changed');
+    const matchValue = dice[0].value;
+    const tenzieCheck = dice.every((die) => {
+      return die.isHeld && die.value === matchValue;
+    });
+    if (tenzieCheck) {
+      console.log('You won!');
+      setTenzies(true);
+    }
   }, [dice]);
 
   const diceElements = dice.map((die) => (
