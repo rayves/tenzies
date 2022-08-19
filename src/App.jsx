@@ -5,6 +5,7 @@ import { nanoid } from 'nanoid';
 
 function App() {
   const [dice, setDice] = useState(allNewDice());
+  const [count, setCount] = useState(0);
 
   const diceElements = dice.map((die) => (
     <Die
@@ -48,6 +49,10 @@ function App() {
     });
   }
 
+  function counter() {
+    setCount((prevCount) => prevCount + 1);
+  }
+
   console.table(dice);
 
   return (
@@ -58,7 +63,14 @@ function App() {
         current value between rolls.
       </p>
       <div className="die-container">{diceElements}</div>
-      <button className="roll-dice" onClick={rollDice}>
+      <p>Number of Rolls: {count}</p>
+      <button
+        className="roll-dice"
+        onClick={() => {
+          rollDice();
+          counter();
+        }}
+      >
         Roll
       </button>
     </main>
